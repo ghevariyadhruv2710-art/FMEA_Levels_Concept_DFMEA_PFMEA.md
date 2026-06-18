@@ -1,0 +1,42 @@
+# Technical Case Study: Statistical Process Control (SPC) & Process Capability (Cp/Cpk)
+
+## 1. Objective & Scope
+This study documents the practical application of Statistical Process Control (SPC) and process capability analysis within an automated manufacturing environment. The goal is to demonstrate the methodology used to distinguish between common cause and special cause variation, resolve out-of-control conditions, and evaluate long-term process performance against automotive tolerances ($C_{pk} \ge 1.33$).
+
+---
+
+## 2. Empirical Control Chart Data
+The case study tracks a critical-to-quality (CTQ) internal diameter of a CNC-machined bore. 
+
+* **Target Nominal Specification:** $20.00 \text{ mm}$
+* **Upper Specification Limit (USL):** $20.05 \text{ mm}$
+* **Lower Specification Limit (LSL):** $19.95 \text{ mm}$
+* **Total Tolerance Window:** $0.10 \text{ mm}$
+
+### Production Log (Hourly Sampling)
+| Timestamp | Measured Dimension | Variation Classification | Status |
+| :--- | :--- | :--- | :--- |
+| 10:00 AM | 20.01 mm | Common Cause (Normal Noise) | Within Control Limits |
+| 11:00 AM | 20.02 mm | Common Cause (Normal Noise) | Within Control Limits |
+| 12:00 PM | 20.01 mm | Common Cause (Normal Noise) | Within Control Limits |
+| 01:00 PM | 20.03 mm | Common Cause (Normal Noise) | Within Control Limits |
+| **02:00 PM** | **20.15 mm** | **Special Cause (Systematic Shift)** | ❌ **Out of Control & Spec** |
+
+---
+
+## 3. Root Cause & Engineering Analysis
+
+### 3.1 Variation Diagnosis
+* **10:00 AM - 01:00 PM:** The process exhibits statistical stability. The minor oscillations are inherent to the machine-tool-workpiece system (e.g., standard ambient temperature variation, micro-vibrations). 
+* **02:00 PM:** The sudden jump to $20.15 \text{ mm}$ ($+0.10 \text{ mm}$ above the upper specification limit) cannot be explained by normal distribution. This is an **unstable, out-of-control condition triggered by a Special Cause**.
+
+### 3.2 Engineering Hypotheses (Physical Root Causes)
+* **Tooling Degradation:** Sudden chipping or catastrophic failure of the boring insert, modifying the cutting geometry.
+* **Mechanical Fixture Shift:** Drop in hydraulic/pneumatic pressure or a loose clamping bolt causing the component to move during machining.
+* **Human Error:** Operator input error during an offset adjustment between 1:00 PM and 2:00 PM.
+
+---
+
+## 4. Corrective & Containment Action Plan
+
+When an SPC control chart triggers an out-of-boundary alarm, the following operational sequence is executed immediately:
